@@ -9,6 +9,7 @@ import {
 import Header from '../components/Header'
 import ContactBar from '../components/ContactBar'
 import Reveal from '../components/Reveal'
+import { CaseStudyTitleContext } from '../storyblok/CaseStudyTitleContext'
 
 type CaseStudyContent = {
   title?: string
@@ -76,19 +77,11 @@ export default function CaseStudy() {
       <div className="w-full max-w-[1440px] flex flex-col flex-1">
         <Header />
         <main className="flex-1 flex flex-col items-center gap-20 md:gap-32 px-6 md:px-[144px] mt-16 md:mt-[120px] mb-16 md:mb-[120px] w-full">
-          {title && (
-            <section className="flex flex-col gap-10 w-full">
-              <Reveal>
-                <h1 className="text-3xl md:text-[32px] font-semibold text-black">
-                  {title}
-                </h1>
-              </Reveal>
-            </section>
-          )}
-
-          {(body ?? []).map((blok) => (
-            <StoryblokComponent blok={blok} key={blok._uid} />
-          ))}
+          <CaseStudyTitleContext.Provider value={title}>
+            {(body ?? []).map((blok) => (
+              <StoryblokComponent blok={blok} key={blok._uid} />
+            ))}
+          </CaseStudyTitleContext.Provider>
         </main>
         <Reveal>
           <ContactBar />

@@ -1,5 +1,6 @@
 import { storyblokEditable, type SbBlokData } from '@storyblok/react'
 import Reveal from '../../components/Reveal'
+import { useCaseStudyTitle } from '../CaseStudyTitleContext'
 
 type HeroOutcomeBlok = SbBlokData & {
   headline?: string
@@ -11,6 +12,8 @@ type HeroOutcomeBlok = SbBlokData & {
 }
 
 export default function HeroOutcome({ blok }: { blok: HeroOutcomeBlok }) {
+  const title = useCaseStudyTitle()
+
   const meta = [
     { label: 'Company', value: blok.company },
     { label: 'Role', value: blok.role },
@@ -20,7 +23,14 @@ export default function HeroOutcome({ blok }: { blok: HeroOutcomeBlok }) {
 
   return (
     <div {...storyblokEditable(blok)} className="flex flex-col gap-10 w-full">
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 md:gap-3">
+        {title && (
+          <Reveal>
+            <h1 className="text-3xl md:text-[32px] font-semibold text-black">
+              {title}
+            </h1>
+          </Reveal>
+        )}
         {blok.headline && (
           <Reveal>
             <p className="text-3xl md:text-[32px] font-semibold text-[var(--color-text-secondary)]">
