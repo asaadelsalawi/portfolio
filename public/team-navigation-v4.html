@@ -175,10 +175,11 @@
     var mainSize = vertical ? Math.max(560, YEARS.length * 170) : W;
     var nodeThick = 34; // node breadth along the cross axis's *thin* dimension
     var gap = 6;
-    var mainPad = nodeThick + 8; // enough room so the first/last node's own width doesn't clip at the edge
+    var mainPadStart = 0;            // flush with the title/subtitle text above
+    var mainPadEnd = nodeThick + 8;  // room so the last column's own width doesn't clip
     var crossPad = 56;  // margin reserved for the year label on the cross axis (above the column in horizontal, left of the row in vertical)
 
-    var mainStep = (mainSize - mainPad * 2) / (YEARS.length - 1);
+    var mainStep = (mainSize - mainPadStart - mainPadEnd) / (YEARS.length - 1);
     var crossLen = crossSize - crossPad * 2;
 
     var maxNodes = Math.max.apply(null, model.cols.map(function (c) { return c.nodes.length; }));
@@ -189,7 +190,7 @@
       var pos = crossPad;
       col.nodes.forEach(function (n) {
         var len = n.count * k;
-        nodes[n.id] = Object.assign({}, n, { mainPos: mainPad + c * mainStep, crossPos: pos, len: len });
+        nodes[n.id] = Object.assign({}, n, { mainPos: mainPadStart + c * mainStep, crossPos: pos, len: len });
         pos += len + gap;
       });
     });
@@ -213,7 +214,7 @@
       inCursor[toId] += l.thick;
     });
 
-    return { nodes: nodes, links: links, mainSize: mainSize, crossSize: crossSize, nodeThick: nodeThick, mainStep: mainStep, mainPad: mainPad, crossPad: crossPad };
+    return { nodes: nodes, links: links, mainSize: mainSize, crossSize: crossSize, nodeThick: nodeThick, mainStep: mainStep, mainPadStart: mainPadStart, crossPad: crossPad };
   }
 
   function ribbonPath(l, layout, vertical, nodeThick) {
@@ -274,7 +275,7 @@
 
     // year labels
     YEARS.forEach(function (y, c) {
-      var mainPos = layout.mainPad + c * layout.mainStep;
+      var mainPos = layout.mainPadStart + c * layout.mainStep;
       var t = el('text', {
         class: 'year-label',
         x: vertical ? 4 : mainPos + layout.nodeThick / 2,
