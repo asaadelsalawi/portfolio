@@ -95,11 +95,11 @@ export default function TextRevealTest() {
             </div>
           </main>
         ) : (
-          <main className="flex-1 w-full py-6 px-6 md:px-[144px]">
+          <main className="flex-1 w-full py-6 px-6 md:px-[144px] bg-white">
             <iframe
               src="/team-navigation.html"
               title="Team Navigation 2023–2026"
-              className="w-full rounded-[var(--radius-l4)] border border-[var(--color-border-default)]"
+              className="w-full border-0 bg-white"
               style={{ height: '80vh' }}
             />
           </main>
