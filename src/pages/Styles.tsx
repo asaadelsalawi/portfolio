@@ -1,12 +1,19 @@
 import Header from '../components/Header'
 import ContactBar from '../components/ContactBar'
 
-function Swatch({ name, varName }: { name: string; varName: string }) {
+function Swatch({
+  name,
+  varName,
+  bgClass,
+}: {
+  name: string
+  varName: string
+  bgClass: string
+}) {
   return (
     <div className="flex flex-col gap-2">
       <div
-        className="w-full aspect-square rounded-[var(--radius-l2)] border border-[var(--color-border-default)]"
-        style={{ backgroundColor: `var(${varName})` }}
+        className={`w-full aspect-square rounded-[var(--radius-l2)] border border-[var(--color-border-default)] ${bgClass}`}
       />
       <p className="text-sm font-medium text-black">{name}</p>
       <p className="text-sm text-[var(--color-text-tertiary)]">{varName}</p>
@@ -61,11 +68,11 @@ export default function Styles() {
           <section className="flex flex-col gap-8 w-full">
             <h2 className="text-2xl font-semibold text-black">Core colors</h2>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-              <Swatch name="Ink (text)" varName="--color-ink" />
-              <Swatch name="Text secondary" varName="--color-text-secondary" />
-              <Swatch name="Text tertiary" varName="--color-text-tertiary" />
-              <Swatch name="Background secondary" varName="--color-bg-secondary" />
-              <Swatch name="Border default" varName="--color-border-default" />
+              <Swatch name="Ink (text)" varName="--color-ink" bgClass="bg-[var(--color-ink)]" />
+              <Swatch name="Text secondary" varName="--color-text-secondary" bgClass="bg-[var(--color-text-secondary)]" />
+              <Swatch name="Text tertiary" varName="--color-text-tertiary" bgClass="bg-[var(--color-text-tertiary)]" />
+              <Swatch name="Background secondary" varName="--color-bg-secondary" bgClass="bg-[var(--color-bg-secondary)]" />
+              <Swatch name="Border default" varName="--color-border-default" bgClass="bg-[var(--color-border-default)]" />
             </div>
           </section>
 
@@ -74,17 +81,37 @@ export default function Styles() {
               Color library — 5 families × 3 steps
             </h2>
             <div className="grid grid-cols-3 md:grid-cols-5 gap-6">
-              {['lime', 'coral', 'green', 'blue', 'purple'].map((family) => (
-                <div key={family} className="flex flex-col gap-6">
-                  <Swatch name={`${family} light`} varName={`--color-${family}-light`} />
-                  <Swatch name={family} varName={`--color-${family}`} />
-                  <Swatch name={`${family} dark`} varName={`--color-${family}-dark`} />
-                </div>
-              ))}
+              <div className="flex flex-col gap-6">
+                <Swatch name="lime light" varName="--color-lime-light" bgClass="bg-[var(--color-lime-light)]" />
+                <Swatch name="lime" varName="--color-lime" bgClass="bg-[var(--color-lime)]" />
+                <Swatch name="lime dark" varName="--color-lime-dark" bgClass="bg-[var(--color-lime-dark)]" />
+              </div>
+              <div className="flex flex-col gap-6">
+                <Swatch name="coral light" varName="--color-coral-light" bgClass="bg-[var(--color-coral-light)]" />
+                <Swatch name="coral" varName="--color-coral" bgClass="bg-[var(--color-coral)]" />
+                <Swatch name="coral dark" varName="--color-coral-dark" bgClass="bg-[var(--color-coral-dark)]" />
+              </div>
+              <div className="flex flex-col gap-6">
+                <Swatch name="green light" varName="--color-green-light" bgClass="bg-[var(--color-green-light)]" />
+                <Swatch name="green" varName="--color-green" bgClass="bg-[var(--color-green)]" />
+                <Swatch name="green dark" varName="--color-green-dark" bgClass="bg-[var(--color-green-dark)]" />
+              </div>
+              <div className="flex flex-col gap-6">
+                <Swatch name="blue light" varName="--color-blue-light" bgClass="bg-[var(--color-blue-light)]" />
+                <Swatch name="blue" varName="--color-blue" bgClass="bg-[var(--color-blue)]" />
+                <Swatch name="blue dark" varName="--color-blue-dark" bgClass="bg-[var(--color-blue-dark)]" />
+              </div>
+              <div className="flex flex-col gap-6">
+                <Swatch name="purple light" varName="--color-purple-light" bgClass="bg-[var(--color-purple-light)]" />
+                <Swatch name="purple" varName="--color-purple" bgClass="bg-[var(--color-purple)]" />
+                <Swatch name="purple dark" varName="--color-purple-dark" bgClass="bg-[var(--color-purple-dark)]" />
+              </div>
             </div>
             <p className="text-sm text-[var(--color-text-tertiary)]">
               Accent = lime, accent-ink = lime-dark. Used on the closing "what
-              I'd tell the next person" panel in case studies.
+              I'd tell the next person" panel in case studies. The other four
+              families aren't used anywhere on the site yet, they're defined
+              as a library for future use.
             </p>
           </section>
 
@@ -135,22 +162,21 @@ export default function Styles() {
           <section className="flex flex-col gap-8 w-full">
             <h2 className="text-2xl font-semibold text-black">Radii</h2>
             <div className="flex flex-wrap gap-8">
-              {[
-                { name: 'l', varName: '--radius-l', px: '8px' },
-                { name: 'l2', varName: '--radius-l2', px: '10px' },
-                { name: 'l4', varName: '--radius-l4', px: '12px' },
-              ].map((r) => (
-                <div key={r.name} className="flex flex-col items-center gap-2">
-                  <div
-                    className="w-24 h-24 bg-[var(--color-bg-secondary)] border border-[var(--color-border-default)]"
-                    style={{ borderRadius: `var(${r.varName})` }}
-                  />
-                  <p className="text-sm font-medium text-black">{r.name}</p>
-                  <p className="text-sm text-[var(--color-text-tertiary)]">
-                    {r.varName} — {r.px}
-                  </p>
-                </div>
-              ))}
+              <div className="flex flex-col items-center gap-2">
+                <div className="w-24 h-24 bg-[var(--color-bg-secondary)] border border-[var(--color-border-default)] rounded-[var(--radius-l)]" />
+                <p className="text-sm font-medium text-black">l</p>
+                <p className="text-sm text-[var(--color-text-tertiary)]">--radius-l — 8px</p>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <div className="w-24 h-24 bg-[var(--color-bg-secondary)] border border-[var(--color-border-default)] rounded-[var(--radius-l2)]" />
+                <p className="text-sm font-medium text-black">l2</p>
+                <p className="text-sm text-[var(--color-text-tertiary)]">--radius-l2 — 10px</p>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <div className="w-24 h-24 bg-[var(--color-bg-secondary)] border border-[var(--color-border-default)] rounded-[var(--radius-l4)]" />
+                <p className="text-sm font-medium text-black">l4</p>
+                <p className="text-sm text-[var(--color-text-tertiary)]">--radius-l4 — 12px</p>
+              </div>
             </div>
           </section>
 
