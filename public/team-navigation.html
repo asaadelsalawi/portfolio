@@ -81,13 +81,13 @@
 
   // Renamed to plain, human wording. `source` = exact wording in the sheet.
   var STATES = [
-    { id: 'on-team',   source: 'In My Team',           label: 'On my team',               varName: '--green' },
-    { id: 'new-hire',  source: 'Joined From Outside',  label: 'New hire',                 varName: '--blue' },
-    { id: 'moved-in',  source: 'Joined From Within',   label: 'Moved from another team',  varName: '--lime-dark', ink: '--bg' },
-    { id: 'moved-out', source: 'Left Within',          label: 'Moved to another team',    varName: '--purple' },
-    { id: 'left-co',   source: 'Left Outside',         label: 'Left the company',         varName: '--coral' },
-    { id: 'elsewhere', source: 'Other Business Area',  label: 'Elsewhere in the company', varName: '--blue-dark', ink: '--bg' },
-    { id: 'not-at-co', source: 'Not In Business',      label: 'Not at the company',        varName: '--bg-secondary', neutral: true },
+    { id: 'on-team',   source: 'In My Team',           label: 'On my team',               varName: '--lime' },
+    { id: 'new-hire',  source: 'Joined From Outside',  label: 'New hire',                 varName: '--lime-light' },
+    { id: 'moved-in',  source: 'Joined From Within',   label: 'Moved from another team',  varName: '--lime-light' },
+    { id: 'moved-out', source: 'Left Within',          label: 'Moved to another team',    varName: '--purple-light' },
+    { id: 'left-co',   source: 'Left Outside',         label: 'Left the company',         varName: '--coral-light' },
+    { id: 'elsewhere', source: 'Other Business Area',  label: 'Elsewhere in the company', varName: '--purple-light' },
+    { id: 'not-at-co', source: 'Not In Business',      label: 'Not at the company',        varName: '--coral-light' },
     { id: 'no-data',   source: null,                   label: 'No data',                   varName: '--bg-secondary', neutral: true },
   ];
   var STATE_BY_ID = {};
@@ -285,16 +285,28 @@
       svg.appendChild(t);
     });
 
+    var defs = el('defs', {});
+    svg.appendChild(defs);
+
     // ribbons
     var ribbonEls = [];
-    layout.links.forEach(function (l) {
+    layout.links.forEach(function (l, i) {
       var d = ribbonPath(l, layout, vertical, layout.nodeThick);
-      var color = stateColor(l.from);
+      var gradId = 'ribbon-grad-' + i;
+      var grad = el('linearGradient', vertical
+        ? { id: gradId, x1: '0%', y1: '0%', x2: '0%', y2: '100%' }
+        : { id: gradId, x1: '0%', y1: '0%', x2: '100%', y2: '0%' });
+      var stop1 = el('stop', { offset: '0%', 'stop-color': stateColor(l.from) });
+      var stop2 = el('stop', { offset: '100%', 'stop-color': stateColor(l.to) });
+      grad.appendChild(stop1);
+      grad.appendChild(stop2);
+      defs.appendChild(grad);
+
       var path = el('path', {
         class: 'ribbon',
         d: d,
-        fill: color,
-        opacity: 0.4,
+        fill: 'url(#' + gradId + ')',
+        opacity: 0.55,
       });
       path.dataset.from = l.from;
       path.dataset.to = l.to;
