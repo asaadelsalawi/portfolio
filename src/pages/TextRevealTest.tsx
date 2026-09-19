@@ -15,6 +15,8 @@ export default function TextRevealTest() {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const words = gsap.utils.toArray<HTMLElement>('.reveal-word')
+      const headerEl = document.querySelector('header') as HTMLElement | null
+      const headerOffset = headerEl?.offsetHeight ?? 0
 
       gsap.to(words, {
         color: '#0b0d12', // matches --color-ink
@@ -22,9 +24,11 @@ export default function TextRevealTest() {
         ease: 'none',
         scrollTrigger: {
           trigger: containerRef.current,
-          start: 'top 80%',
-          end: 'bottom 40%',
+          start: `top ${headerOffset}`,
+          end: '+=100%',
           scrub: 0.5,
+          pin: true,
+          pinSpacing: true,
         },
       })
     }, containerRef)
@@ -46,9 +50,9 @@ export default function TextRevealTest() {
 
           <div
             ref={containerRef}
-            className="px-6 md:px-[144px] py-[30vh] max-w-[1440px] mx-auto w-full"
+            className="min-h-screen flex items-center justify-center px-6 md:px-[144px] bg-white"
           >
-            <p className="text-4xl md:text-[64px] font-semibold leading-tight md:leading-[1.15]">
+            <p className="text-4xl md:text-[64px] font-semibold leading-tight md:leading-[1.15] max-w-[1440px]">
               {TEXT.split(' ').map((word, i) => (
                 <span
                   key={i}
@@ -61,7 +65,7 @@ export default function TextRevealTest() {
             </p>
           </div>
 
-          {/* Spacer so there's room to scroll after the effect ends */}
+          {/* Spacer so the text visibly scrolls away after it's fully black */}
           <div className="h-[60vh]" />
         </main>
         <ContactBar />
