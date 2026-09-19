@@ -24,16 +24,6 @@
     --blue:#4396f5; --blue-light:#d9eafd; --blue-dark:#3d6692;
     --purple:#e15ef2; --purple-light:#f9dffc; --purple-dark:#8b4a91;
   }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --bg:#0F1216; --ink:#F5F6F8; --text-secondary:#B7BCC8; --text-tertiary:#8A90A0;
-      --bg-secondary:#1A1E24; --border-default:#2A2F38;
-    }
-  }
-  :root[data-theme="dark"]{
-    --bg:#0F1216; --ink:#F5F6F8; --text-secondary:#B7BCC8; --text-tertiary:#8A90A0;
-    --bg-secondary:#1A1E24; --border-default:#2A2F38;
-  }
   html{scroll-padding-top:env(safe-area-inset-top,0px)}
   *{box-sizing:border-box}
   body{
@@ -177,7 +167,7 @@
   // ---- Layout (shared math, oriented per breakpoint) ----------------
   function computeLayout(vertical) {
     var stage = document.getElementById('stage');
-    var W = stage.clientWidth;
+    var W = window.innerWidth;
     var mainLen = vertical ? YEARS.length : YEARS.length; // 4 steps either way
     var crossSize = vertical ? Math.max(320, W) : 420;     // height (horiz) / width driver (vert)
     var mainSize = vertical ? Math.max(560, YEARS.length * 170) : W;
@@ -393,6 +383,7 @@
 
   renderLegend();
   render();
+  requestAnimationFrame(function () { requestAnimationFrame(render); });
   var resizeT;
   window.addEventListener('resize', function () {
     clearTimeout(resizeT);
