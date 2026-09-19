@@ -83,10 +83,10 @@
   var STATES = [
     { id: 'on-team',   source: 'In My Team',           label: 'On my team',               varName: '--green' },
     { id: 'new-hire',  source: 'Joined From Outside',  label: 'New hire',                 varName: '--blue' },
-    { id: 'moved-in',  source: 'Joined From Within',   label: 'Moved from another team',  varName: '--blue-light' },
-    { id: 'moved-out', source: 'Left Within',          label: 'Moved to another team',    varName: '--purple-light' },
+    { id: 'moved-in',  source: 'Joined From Within',   label: 'Moved from another team',  varName: '--lime-dark', ink: '--bg' },
+    { id: 'moved-out', source: 'Left Within',          label: 'Moved to another team',    varName: '--purple' },
     { id: 'left-co',   source: 'Left Outside',         label: 'Left the company',         varName: '--coral' },
-    { id: 'elsewhere', source: 'Other Business Area',  label: 'Elsewhere in the company', varName: '--purple' },
+    { id: 'elsewhere', source: 'Other Business Area',  label: 'Elsewhere in the company', varName: '--blue-dark', ink: '--bg' },
     { id: 'not-at-co', source: 'Not In Business',      label: 'Not at the company',        varName: '--bg-secondary', neutral: true },
     { id: 'no-data',   source: null,                   label: 'No data',                   varName: '--bg-secondary', neutral: true },
   ];
@@ -161,7 +161,9 @@
   }
   function stateInk(id) {
     var s = STATE_BY_ID[id];
-    return s.neutral ? cssVar('--text-tertiary') : cssVar('--ink');
+    if (s.neutral) return cssVar('--text-tertiary');
+    if (s.ink) return cssVar(s.ink);
+    return cssVar('--ink');
   }
 
   // ---- Layout (shared math, oriented per breakpoint) ----------------
