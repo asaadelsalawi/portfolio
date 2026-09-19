@@ -41,13 +41,6 @@ export default function TextRevealTest() {
       <div className="w-full max-w-[1440px] flex flex-col flex-1">
         <Header />
         <main className="flex-1 flex flex-col w-full bg-white">
-          {/* Spacer so there's room to scroll before the effect starts */}
-          <div className="h-[60vh] flex items-center justify-center px-6">
-            <p className="text-base text-[var(--color-text-tertiary)]">
-              Scroll down ↓
-            </p>
-          </div>
-
           <div
             ref={containerRef}
             className="min-h-screen flex items-center justify-center px-6 md:px-[144px] bg-white"
