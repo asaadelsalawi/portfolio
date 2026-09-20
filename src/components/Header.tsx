@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 const navItems = [
   { label: 'Case Studies', to: '/#work' },
   { label: 'Leadership', to: '/leadership' },
-  { label: 'Experience', to: '/#experience' },
+  { label: 'Experience', to: '/experience' },
   { label: 'Contact', to: '/contact' },
 ]
 
@@ -19,7 +19,8 @@ export default function Header() {
         {navItems.map((item) => {
           const isActive =
             (item.to === '/leadership' && location.pathname === '/leadership') ||
-            (item.to === '/contact' && location.pathname === '/contact')
+            (item.to === '/contact' && location.pathname === '/contact') ||
+            (item.to === '/experience' && location.pathname === '/experience')
           return (
             <Link
               key={item.label}

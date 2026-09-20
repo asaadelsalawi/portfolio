@@ -90,10 +90,10 @@ export default function Home() {
               </p>
               <LogoStrip />
               <Link
-                to="/leadership"
+                to="/experience"
                 className="text-base font-medium text-black hover:underline w-fit"
               >
-                See the full philosophy →
+                See the full experience →
               </Link>
             </GridSplit>
             <Reveal>

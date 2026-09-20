@@ -7,6 +7,7 @@ import Contact from '../pages/Contact'
 import Imprint from '../pages/Imprint'
 import TextRevealTest from '../pages/TextRevealTest'
 import Styles from '../pages/Styles'
+import Experience from '../pages/Experience'
 
 export default function PageTransition() {
   const location = useLocation()
@@ -38,6 +39,7 @@ export default function PageTransition() {
         <Route path="/imprint" element={<Imprint />} />
         <Route path="/test" element={<TextRevealTest />} />
         <Route path="/styles" element={<Styles />} />
+        <Route path="/experience" element={<Experience />} />
       </Routes>
     </div>
   )
