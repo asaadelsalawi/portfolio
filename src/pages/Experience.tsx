@@ -128,8 +128,7 @@ export default function Experience() {
               </Reveal>
               <Reveal>
                 <p className="text-3xl md:text-[32px] font-semibold text-[var(--color-text-secondary)]">
-                  I became design manager at Cazoo, Deel and StepStone.
-                  <span className="block">B2B is my specialty.</span>
+                  I managed design teams at Cazoo, Deel and StepStone with strong focus on B2B and SaaS.
                 </p>
               </Reveal>
             </div>
