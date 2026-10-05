@@ -81,7 +81,7 @@ const roles: Role[] = [
     company: 'Cazoo',
     title: 'Product Design Manager',
     start: { y: 2021, m: 8 },
-    end: { y: 2022, m: 9 },
+    end: { y: 2022, m: 6 },
     location: 'Munich, Germany',
     context: 'Online used car retailer · NYSE listed at the time',
     paragraphs: [
@@ -93,7 +93,7 @@ const roles: Role[] = [
     company: 'AutoScout24',
     title: 'Senior Product Designer',
     start: { y: 2018, m: 6 },
-    end: { y: 2021, m: 7 },
+    end: { y: 2021, m: 6 },
     location: 'Munich, Germany',
     context: 'Automotive marketplace · B2B2C',
     paragraphs: [
