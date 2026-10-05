@@ -405,6 +405,21 @@
     clearTimeout(resizeT);
     resizeT = setTimeout(render, 120);
   });
+
+  // When embedded, tell the parent page how tall the content is, so the frame
+  // can fit both the horizontal (desktop) and the vertical (mobile) layout.
+  function reportHeight() {
+    if (window.parent === window) return;
+    window.parent.postMessage(
+      { type: 'embed-height', height: document.getElementById('root').offsetHeight },
+      '*'
+    );
+  }
+  if (window.ResizeObserver) {
+    new ResizeObserver(reportHeight).observe(document.getElementById('root'));
+  }
+  window.addEventListener('load', reportHeight);
+  reportHeight();
 })();
 </script>
 </body>

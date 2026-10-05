@@ -108,7 +108,7 @@ export default function TextRevealTest() {
         ) : tab === 'team-nav' ? (
           <main className="flex-1 w-full py-6 px-6 md:px-[144px] bg-white">
             <iframe
-              src="/team-navigation-v4.html"
+              src="/team-navigation-v5.html"
               title="Team Navigation 2023–2026"
               className="w-full border-0 bg-white"
               style={{ height: '80vh' }}

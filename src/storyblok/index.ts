@@ -9,6 +9,11 @@ import AiFluency from './blocks/AiFluency'
 import Proof from './blocks/Proof'
 import RoleClarity from './blocks/RoleClarity'
 import Reflection from './blocks/Reflection'
+import QuoteReveal from './blocks/QuoteReveal'
+import HeroImage from './blocks/HeroImage'
+import AlluvialDiagram from './blocks/AlluvialDiagram'
+import BeforeAfter from './blocks/BeforeAfter'
+import Placeholder from './blocks/Placeholder'
 
 // Public Content Delivery API token (read-only). Safe to ship in frontend
 // code, this is how Storyblok's CDN token is designed to be used.
@@ -31,5 +36,10 @@ storyblokInit({
     proof: Proof,
     role_clarity: RoleClarity,
     reflection: Reflection,
+    quote_reveal: QuoteReveal,
+    hero_image: HeroImage,
+    alluvial_diagram: AlluvialDiagram,
+    before_after: BeforeAfter,
+    placeholder: Placeholder,
   },
 })

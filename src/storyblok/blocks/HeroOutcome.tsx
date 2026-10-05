@@ -23,7 +23,7 @@ export default function HeroOutcome({ blok }: { blok: HeroOutcomeBlok }) {
 
   return (
     <div {...storyblokEditable(blok)} className="flex flex-col gap-10 w-full">
-      <div className="flex flex-col gap-2 md:gap-3">
+      <div className="flex flex-col">
         {title && (
           <Reveal>
             <h1 className="text-3xl md:text-[32px] font-semibold text-black">

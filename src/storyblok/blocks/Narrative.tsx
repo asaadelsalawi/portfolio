@@ -1,9 +1,10 @@
-import { storyblokEditable, type SbBlokData } from '@storyblok/react'
+import { storyblokEditable, StoryblokComponent, type SbBlokData } from '@storyblok/react'
 import GridSplit from '../../components/GridSplit'
 import { renderCaseStudyRichText } from '../richtext'
 
 type NarrativeBlok = SbBlokData & {
   heading?: string
+  visuals?: SbBlokData[]
   content?: Parameters<typeof renderCaseStudyRichText>[0]
 }
 
@@ -23,6 +24,9 @@ export default function Narrative({ blok }: { blok: NarrativeBlok }) {
       >
         {rendered}
       </GridSplit>
+      {(blok.visuals ?? []).map((visual) => (
+        <StoryblokComponent blok={visual} key={visual._uid} />
+      ))}
     </section>
   )
 }
