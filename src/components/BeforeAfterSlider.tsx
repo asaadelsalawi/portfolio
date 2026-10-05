@@ -10,6 +10,10 @@ type Props = {
   after: ImageSpec
   /** Starting position of the handle, 0 to 100. Defaults to 50. */
   initial?: number
+  /** Width / height of the images, e.g. 2880 / 1600. Both images must share it. */
+  aspectRatio?: number
+  /** Show the before/after pills on top of the images. Turn off to place labels outside. */
+  showLabels?: boolean
 }
 
 // Left-right arrow glyph for the drag handle, recolored with currentColor.
@@ -21,7 +25,7 @@ function DragIcon() {
   )
 }
 
-export default function BeforeAfterSlider({ before, after, initial = 50 }: Props) {
+export default function BeforeAfterSlider({ before, after, initial = 50, aspectRatio = 3 / 2, showLabels = true }: Props) {
   const wrapperRef = useRef<HTMLDivElement>(null)
   const [pos, setPos] = useState(initial)
 
@@ -63,7 +67,8 @@ export default function BeforeAfterSlider({ before, after, initial = 50 }: Props
   return (
     <div
       ref={wrapperRef}
-      className="relative w-full aspect-[3/2] overflow-hidden rounded-[var(--radius-l4)] border border-[var(--color-border-default)] select-none"
+      className="relative w-full select-none"
+      style={{ aspectRatio }}
     >
       {/* After image: fills the whole wrapper */}
       <img
@@ -84,12 +89,16 @@ export default function BeforeAfterSlider({ before, after, initial = 50 }: Props
       />
 
       {/* Labels. Shown statically, since a hover-only reveal would not work on touch. */}
-      <p className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-white/70 backdrop-blur-md text-sm font-semibold text-black">
-        before
-      </p>
-      <p className="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-white/70 backdrop-blur-md text-sm font-semibold text-black">
-        after
-      </p>
+      {showLabels && (
+        <>
+          <p className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-white/70 backdrop-blur-md text-sm font-semibold text-black">
+            before
+          </p>
+          <p className="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-white/70 backdrop-blur-md text-sm font-semibold text-black">
+            after
+          </p>
+        </>
+      )}
 
       {/* Draggable divider. Wider than the visible line so touch has a real target. */}
       <div
@@ -106,7 +115,7 @@ export default function BeforeAfterSlider({ before, after, initial = 50 }: Props
         onPointerMove={onPointerMove}
         onKeyDown={onKeyDown}
       >
-        <div className="absolute inset-y-0 left-1/2 -ml-px w-[2px] bg-white" />
+        <div className="absolute inset-y-0 left-1/2 -ml-px w-[2px] bg-black" />
         <div className="relative w-10 h-10 rounded-full bg-black text-white flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
           <DragIcon />
         </div>

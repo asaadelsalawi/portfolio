@@ -116,14 +116,27 @@ export default function TextRevealTest() {
           </main>
         ) : (
           <main className="flex-1 w-full py-16 px-6 md:px-[144px] bg-white flex flex-col gap-4 items-center">
-            <div className="w-full max-w-[720px]">
-              <BeforeAfterSlider
-                before={{ src: '/images/before-after-wireframe.jpg', alt: 'Low-fidelity wireframe of a page layout' }}
-                after={{ src: '/images/before-after-styled.jpg', alt: 'Styled version of the same page layout' }}
-              />
+            {/* Frame: 1152px wide, 74px padding on all sides, so the images are 1004px.
+                The padding is 74/1152 of the frame width, so it scales down on small screens. */}
+            <div className="@container w-full max-w-[1152px]">
+              <div className="relative bg-[var(--color-lime-light)] rounded-[var(--radius-l4)] p-[6.4236cqw]">
+                {/* Labels sit in the frame padding, centered above the images, so they never cover the UI */}
+                <p className="absolute left-[6.4236cqw] top-[3.2118cqw] -translate-y-1/2 text-sm font-semibold text-black">
+                  before
+                </p>
+                <p className="absolute right-[6.4236cqw] top-[3.2118cqw] -translate-y-1/2 text-sm font-semibold text-black">
+                  after
+                </p>
+                <BeforeAfterSlider
+                  showLabels={false}
+                  aspectRatio={2880 / 1600}
+                  before={{ src: '/images/kanban-alt.png', alt: 'Candidate board, previous design' }}
+                  after={{ src: '/images/kanban-neu.png', alt: 'Candidate board, new design' }}
+                />
+              </div>
             </div>
-            <p className="text-sm text-[var(--color-text-tertiary)] max-w-[720px] text-center">
-              Drag the handle, or focus it and use the arrow keys. Placeholder mockups, standing in for a real before/after pair.
+            <p className="text-sm text-[var(--color-text-tertiary)] text-center">
+              Drag the handle, or focus it and use the arrow keys.
             </p>
           </main>
         )}
