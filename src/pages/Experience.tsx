@@ -120,7 +120,7 @@ export default function Experience() {
         <Header />
         <main className="flex-1 flex flex-col gap-20 md:gap-32 px-6 md:px-[144px] mt-16 md:mt-[120px] mb-16 md:mb-[120px] w-full">
           <section className="flex flex-col gap-10 w-full">
-            <div className="flex flex-col gap-2 md:gap-3">
+            <div className="flex flex-col gap-4 md:gap-6">
               <Reveal>
                 <h1 className="text-3xl md:text-[32px] font-semibold text-black">
                   From designing products to designing organisations.
