@@ -73,18 +73,15 @@ export default function BeforeAfterSlider({ before, after, initial = 50 }: Props
         className="absolute inset-0 w-full h-full object-cover"
       />
 
-      {/* Before image: clipped to a width that follows the handle */}
-      <div
-        className="absolute inset-y-0 left-0 overflow-hidden"
-        style={{ width: `${pos}%` }}
-      >
-        <img
-          src={before.src}
-          alt={before.alt}
-          draggable={false}
-          className="w-full h-full object-cover"
-        />
-      </div>
+      {/* Before image: same size and position as the after image, only clipped
+          from the right. It never rescales or shifts while the handle moves. */}
+      <img
+        src={before.src}
+        alt={before.alt}
+        draggable={false}
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
+      />
 
       {/* Labels. Shown statically, since a hover-only reveal would not work on touch. */}
       <p className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-white/70 backdrop-blur-md text-sm font-semibold text-black">
