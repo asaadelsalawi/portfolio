@@ -13,7 +13,6 @@ type Role = {
   end?: YM | 'today'
   period?: string // used instead of start/end when only years are known
   location?: string
-  context: string
   leadIn?: string
   paragraphs: string[]
 }
@@ -55,7 +54,6 @@ const roles: Role[] = [
     start: { y: 2023, m: 9 },
     end: 'today',
     location: 'Munich, Germany',
-    context: 'Recruiting platform · B2B',
     paragraphs: [
       'With my team, I set the product strategy for Recruit and paved the way for it to become a product suite. 5,200 customers now use it every month. I led up to nine designers and developed two seniors into leads.',
     ],
@@ -67,7 +65,6 @@ const roles: Role[] = [
     start: { y: 2022, m: 11 },
     end: { y: 2023, m: 8 },
     location: 'Remote',
-    context: 'Global payroll and HR platform · B2B SaaS',
     paragraphs: [
       "I hired and led up to seven designers in Global Payroll and set the group's design direction.",
     ],
@@ -79,7 +76,6 @@ const roles: Role[] = [
     start: { y: 2021, m: 8 },
     end: { y: 2022, m: 6 },
     location: 'Munich, Germany',
-    context: 'Online used car retailer · NYSE listed at the time',
     paragraphs: [
       'I led a team that grew from three to five designers, plus a researcher. I set the customer vision for car subscriptions and aligned product and engineering leads across 50-plus people in three locations.',
     ],
@@ -91,7 +87,6 @@ const roles: Role[] = [
     start: { y: 2018, m: 6 },
     end: { y: 2021, m: 6 },
     location: 'Munich, Germany',
-    context: 'Automotive marketplace · B2B2C',
     paragraphs: [
       'I rolled out an online car sales flow across 2 million European listings and lifted dealer lead-to-sale conversion by 200 percent.',
     ],
@@ -103,7 +98,6 @@ const roles: Role[] = [
     start: { y: 2015, m: 11 },
     end: { y: 2018, m: 5 },
     location: 'Munich, Germany',
-    context: 'Security and building technology · B2B',
     paragraphs: [
       'I took Endeavour from concept to a working MVP for alpha customers.',
     ],
@@ -113,7 +107,6 @@ const roles: Role[] = [
     title: 'UX & Interaction Design',
     period: '2007 to 2015 (8 years)',
     location: 'Munich, Germany',
-    context: 'Ebook subscription · B2C',
     paragraphs: [
       'At Skoobe I rolled out a new brand and checkout funnel and lifted conversion by 19 percent. Before that, I worked freelance and at agencies in fintech, health and automotive.',
     ],
@@ -135,7 +128,7 @@ export default function Experience() {
               </Reveal>
               <Reveal>
                 <p className="text-3xl md:text-[32px] font-semibold text-[var(--color-text-secondary)]">
-                  I became design manager at Cazoo, Deel and StepStone.
+                  I became design manager at Cazoo, Deel and StepStone. B2B is my specialty.
                 </p>
               </Reveal>
             </div>
@@ -146,7 +139,7 @@ export default function Experience() {
               <GridSplit
                 key={i}
                 label={
-                  <div className="flex flex-col gap-6">
+                  <div className="flex flex-col gap-3">
                     {role.logo ? (
                       <img
                         src={role.logo}
@@ -170,9 +163,6 @@ export default function Experience() {
                   </div>
                 }
               >
-                <p className="text-base text-[var(--color-text-tertiary)]">
-                  {role.context}
-                </p>
                 {role.leadIn && (
                   <p className="text-xl font-semibold leading-7 text-black">
                     {role.leadIn}
