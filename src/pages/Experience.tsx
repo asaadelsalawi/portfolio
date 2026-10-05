@@ -56,12 +56,8 @@ const roles: Role[] = [
     end: 'today',
     location: 'Munich, Germany',
     context: 'Recruiting platform · B2B',
-    leadIn: 'Three years in.',
     paragraphs: [
-      'With my team, I set the product strategy and a 12 to 18 month roadmap for Recruit. 5,200 customers of all sizes now use it every month.',
-      'I built the foundation that let Recruit grow into a product suite, with add-ons like employer branding, salary information and active sourcing.',
-      'I led up to nine designers through all phases of the product lifecycle and developed two seniors into leads.',
-      "I'm the hiring manager for all design roles from mid to lead level, with hundreds of interviews and several hires across my team and others.",
+      'With my team, I set the product strategy for Recruit, now used by 5,200 customers every month, and led up to nine designers, developing two seniors into leads.',
     ],
   },
   {
