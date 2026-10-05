@@ -143,16 +143,6 @@ export default function Experience() {
                 </p>
               </Reveal>
             </div>
-            <Reveal>
-              <div className="flex flex-wrap gap-6 text-base text-[var(--color-text-tertiary)]">
-                <p>
-                  Team size: <span className="text-black">5 → 7 → 9 designers</span>
-                </p>
-                <p>
-                  Scope: <span className="text-black">1 domain → 2</span>
-                </p>
-              </div>
-            </Reveal>
           </section>
 
           <section className="flex flex-col gap-20">
