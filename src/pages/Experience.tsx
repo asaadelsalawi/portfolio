@@ -151,10 +151,10 @@ export default function Experience() {
                       <img
                         src={role.logo}
                         alt={role.company}
-                        className="h-16 md:h-20 w-auto object-contain object-left"
+                        className="h-12 md:h-[60px] w-auto object-contain object-left"
                       />
                     ) : (
-                      <p className="h-16 md:h-20 flex items-center text-xl font-semibold text-black">
+                      <p className="h-12 md:h-[60px] flex items-center text-xl font-semibold text-black">
                         {role.company}
                       </p>
                     )}
