@@ -16,15 +16,6 @@ type Props = {
   showLabels?: boolean
 }
 
-// Left-right arrow glyph for the drag handle, recolored with currentColor.
-function DragIcon() {
-  return (
-    <svg viewBox="0 0 512 512" className="w-4 h-4" fill="currentColor" aria-hidden="true">
-      <path d="M505.7 265.7c3-3 3.1-7.9 .2-11.1l-104-112c-3-3.2-8.1-3.4-11.3-.4s-3.4 8.1-.4 11.3L481.7 252 23.3 252l90.3-90.3c3.1-3.1 3.1-8.2 0-11.3s-8.2-3.1-11.3 0l-104 104c-3.1 3.1-3.1 8.2 0 11.3l104 104c3.1 3.1 8.2 3.1 11.3 0s3.1-8.2 0-11.3L23.3 268l457.4 0-90.3 90.3c-3.1 3.1-3.1 8.2 0 11.3s8.2 3.1 11.3 0l104-104z" />
-    </svg>
-  )
-}
-
 export default function BeforeAfterSlider({ before, after, initial = 50, aspectRatio = 3 / 2, showLabels = true }: Props) {
   const wrapperRef = useRef<HTMLDivElement>(null)
   const [pos, setPos] = useState(initial)
@@ -117,7 +108,9 @@ export default function BeforeAfterSlider({ before, after, initial = 50, aspectR
       >
         <div className="absolute inset-y-0 left-1/2 -ml-px w-[2px] bg-black" />
         <div className="relative w-10 h-10 rounded-full bg-black text-white flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
-          <DragIcon />
+          <span aria-hidden="true" className="text-[28px] leading-none pb-[3px] select-none">
+            ↔
+          </span>
         </div>
       </div>
     </div>

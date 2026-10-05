@@ -120,13 +120,6 @@ export default function TextRevealTest() {
                 The padding is 74/1152 of the frame width, so it scales down on small screens. */}
             <div className="@container w-full max-w-[1152px]">
               <div className="relative bg-[var(--color-lime-light)] rounded-[var(--radius-l4)] p-[6.4236cqw]">
-                {/* Labels sit in the frame padding, centered above the images, so they never cover the UI */}
-                <p className="absolute left-[6.4236cqw] top-[3.2118cqw] -translate-y-1/2 text-sm font-semibold text-black">
-                  before
-                </p>
-                <p className="absolute right-[6.4236cqw] top-[3.2118cqw] -translate-y-1/2 text-sm font-semibold text-black">
-                  after
-                </p>
                 <BeforeAfterSlider
                   showLabels={false}
                   aspectRatio={2880 / 1600}
