@@ -57,7 +57,7 @@ const roles: Role[] = [
     location: 'Munich, Germany',
     context: 'Recruiting platform · B2B',
     paragraphs: [
-      'With my team, I set the product strategy for Recruit, now used by 5,200 customers every month, and led up to nine designers, developing two seniors into leads.',
+      'With my team, I set the product strategy for Recruit and paved the way for it to become a product suite. 5,200 customers now use it every month. I led up to nine designers and developed two seniors into leads.',
     ],
   },
   {
