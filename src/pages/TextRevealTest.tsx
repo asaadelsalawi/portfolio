@@ -3,6 +3,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Header from '../components/Header'
 import ContactBar from '../components/ContactBar'
+import BeforeAfterSlider from '../components/BeforeAfterSlider'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -12,7 +13,7 @@ const TEXT =
 export default function TextRevealTest() {
   const wrapperRef = useRef<HTMLDivElement>(null)
   const [headerHeight, setHeaderHeight] = useState(0)
-  const [tab, setTab] = useState<'reveal' | 'team-nav'>('reveal')
+  const [tab, setTab] = useState<'reveal' | 'team-nav' | 'before-after'>('reveal')
 
   useLayoutEffect(() => {
     const headerEl = document.querySelector('header') as HTMLElement | null
@@ -67,6 +68,16 @@ export default function TextRevealTest() {
           >
             Team Navigation
           </button>
+          <button
+            onClick={() => setTab('before-after')}
+            className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${
+              tab === 'before-after'
+                ? 'bg-black text-white'
+                : 'bg-[var(--color-bg-secondary)] text-[var(--color-text-tertiary)]'
+            }`}
+          >
+            Before / After Slider
+          </button>
         </div>
 
         {tab === 'reveal' ? (
@@ -94,7 +105,7 @@ export default function TextRevealTest() {
               </div>
             </div>
           </main>
-        ) : (
+        ) : tab === 'team-nav' ? (
           <main className="flex-1 w-full py-6 px-6 md:px-[144px] bg-white">
             <iframe
               src="/team-navigation-v4.html"
@@ -103,9 +114,21 @@ export default function TextRevealTest() {
               style={{ height: '80vh' }}
             />
           </main>
+        ) : (
+          <main className="flex-1 w-full py-16 px-6 md:px-[144px] bg-white flex flex-col gap-4 items-center">
+            <div className="w-full max-w-[720px]">
+              <BeforeAfterSlider
+                before={{ src: '/images/before-after-wireframe.jpg', alt: 'Low-fidelity wireframe of a page layout' }}
+                after={{ src: '/images/before-after-styled.jpg', alt: 'Styled version of the same page layout' }}
+              />
+            </div>
+            <p className="text-sm text-[var(--color-text-tertiary)] max-w-[720px] text-center">
+              Drag the handle, or focus it and use the arrow keys. Placeholder mockups, standing in for a real before/after pair.
+            </p>
+          </main>
         )}
 
-        {tab === 'reveal' && <ContactBar />}
+        {tab !== 'team-nav' && <ContactBar />}
       </div>
     </div>
   )
