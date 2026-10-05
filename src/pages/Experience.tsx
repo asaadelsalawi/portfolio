@@ -3,12 +3,48 @@ import ContactBar from '../components/ContactBar'
 import GridSplit from '../components/GridSplit'
 import Reveal from '../components/Reveal'
 
+type YM = { y: number; m: number } // m: 1-12
+
 type Role = {
-  logo: string
+  logo?: string
   company: string
   title: string
-  meta: string
-  description: string
+  start?: YM
+  end?: YM | 'today'
+  period?: string // used instead of start/end when only years are known
+  location?: string
+  context: string
+  leadIn?: string
+  paragraphs: string[]
+}
+
+const MONTHS = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
+]
+
+const fmt = ({ y, m }: YM) => `${MONTHS[m - 1]} ${y}`
+
+function duration(totalMonths: number) {
+  const years = Math.floor(totalMonths / 12)
+  const months = totalMonths % 12
+  const parts: string[] = []
+  if (years) parts.push(`${years} ${years === 1 ? 'year' : 'years'}`)
+  if (months) parts.push(`${months} ${months === 1 ? 'month' : 'months'}`)
+  return parts.join(' ')
+}
+
+function periodLabel(role: Role) {
+  if (role.period) return role.period
+  const start = role.start!
+  const now = new Date()
+  const end: YM =
+    role.end === 'today' || !role.end
+      ? { y: now.getFullYear(), m: now.getMonth() + 1 }
+      : role.end
+  const months = (end.y - start.y) * 12 + (end.m - start.m)
+  const endText = role.end === 'today' ? 'today' : fmt(end)
+  return `${fmt(start)} to ${endText} (${duration(months)})`
 }
 
 const roles: Role[] = [
@@ -16,49 +52,75 @@ const roles: Role[] = [
     logo: '/logos/stepstone.svg',
     company: 'StepStone',
     title: 'Product Design Manager',
-    meta: 'September 2023 – Present (3 years) • Munich, Germany',
-    description:
-      'Leading and coaching a team of three mid to senior UX designers and a researcher, helping them with personal development, and nurturing a culture of trust and safety.',
+    start: { y: 2023, m: 9 },
+    end: 'today',
+    location: 'Munich, Germany',
+    context: 'Recruiting platform · B2B',
+    leadIn: 'Three years in.',
+    paragraphs: [
+      'With my team, I set the product strategy and a 12 to 18 month roadmap for Recruit. 5,200 customers of all sizes now use it every month.',
+      'I built the foundation that let Recruit grow into a product suite, with add-ons like employer branding, salary information and active sourcing.',
+      'I led up to nine designers through all phases of the product lifecycle and developed two seniors into leads.',
+      "I'm the hiring manager for all design roles from mid to lead level, with hundreds of interviews and several hires across my team and others.",
+    ],
   },
   {
     logo: '/logos/deel.svg',
     company: 'Deel',
     title: 'Lead Product Designer & Manager',
-    meta: 'November 2022 – August 2023 (9 months) • Remote',
-    description:
-      "Hired and led up to 7 designers in Global Payroll, setting the group's design direction.",
+    start: { y: 2022, m: 11 },
+    end: { y: 2023, m: 8 },
+    location: 'Remote',
+    context: 'Global payroll and HR platform · B2B SaaS',
+    paragraphs: [
+      "I hired and led up to seven designers in Global Payroll and set the group's design direction.",
+    ],
   },
   {
     logo: '/logos/cazoo.svg',
     company: 'Cazoo',
-    title: 'Design Team Lead',
-    meta: 'August 2021 – June 2022 (10 months) • Munich, Germany',
-    description:
-      'Set the customer vision for car subscriptions and aligned product and engineering leads across 50-plus people in three locations.',
+    title: 'Product Design Manager',
+    start: { y: 2021, m: 8 },
+    end: { y: 2022, m: 9 },
+    location: 'Munich, Germany',
+    context: 'Online used car retailer · NYSE listed at the time',
+    paragraphs: [
+      'I led a team that grew from three to five designers, plus a researcher. I set the customer vision for car subscriptions and aligned product and engineering leads across 50-plus people in three locations.',
+    ],
   },
   {
     logo: '/logos/autoscout24.svg',
     company: 'AutoScout24',
     title: 'Senior Product Designer',
-    meta: 'June 2018 – June 2021 (3 years) • Munich, Germany',
-    description:
-      'Rolled out an online car sales flow across 2 million European listings, lifting dealer lead-to-sale conversion by 200 percent.',
+    start: { y: 2018, m: 6 },
+    end: { y: 2021, m: 7 },
+    location: 'Munich, Germany',
+    context: 'Automotive marketplace · B2B2C',
+    paragraphs: [
+      'I rolled out an online car sales flow across 2 million European listings and lifted dealer lead-to-sale conversion by 200 percent.',
+    ],
   },
   {
     logo: '/logos/bosch.svg',
-    company: 'Bosch',
+    company: 'Bosch Security Systems',
     title: 'Lead User Experience Designer',
-    meta: 'November 2015 – May 2018 (2 years 6 months) • Munich, Germany',
-    description:
-      'Took Endeavour from concept to a working MVP for alpha customers, redefining how large-site security management should work.',
+    start: { y: 2015, m: 11 },
+    end: { y: 2018, m: 5 },
+    location: 'Munich, Germany',
+    context: 'Security and building technology · B2B',
+    paragraphs: [
+      'I took Endeavour from concept to a working MVP for alpha customers.',
+    ],
   },
   {
-    logo: '/logos/bosch.svg',
-    company: 'Bosch',
-    title: 'UX Designer',
-    meta: 'August 2012 – October 2013 (1 year 2 months) • Munich, Germany',
-    description:
-      'Rolled out a new brand and checkout funnel, lifting conversion by 19 percent.',
+    company: 'Skoobe and earlier',
+    title: 'UX & Interaction Design',
+    period: '2007 to 2015 (8 years)',
+    location: 'Munich, Germany',
+    context: 'Ebook subscription · B2C',
+    paragraphs: [
+      'At Skoobe I rolled out a new brand and checkout funnel and lifted conversion by 19 percent. Before that, I worked freelance and at agencies in fintech, health and automotive.',
+    ],
   },
 ]
 
@@ -68,16 +130,28 @@ export default function Experience() {
       <div className="w-full max-w-[1440px] flex flex-col flex-1">
         <Header />
         <main className="flex-1 flex flex-col gap-20 md:gap-32 px-6 md:px-[144px] mt-16 md:mt-[120px] mb-16 md:mb-[120px] w-full">
-          <section className="flex flex-col gap-2">
+          <section className="flex flex-col gap-10 w-full">
+            <div className="flex flex-col gap-2 md:gap-3">
+              <Reveal>
+                <h1 className="text-3xl md:text-[32px] font-semibold text-black">
+                  From designing products to designing organisations.
+                </h1>
+              </Reveal>
+              <Reveal>
+                <p className="text-3xl md:text-[32px] font-semibold text-[var(--color-text-secondary)]">
+                  I became design manager at Cazoo, Deel and StepStone.
+                </p>
+              </Reveal>
+            </div>
             <Reveal>
-              <h1 className="text-3xl md:text-[32px] font-semibold text-black">
-                From designing products to designing organisations.
-              </h1>
-            </Reveal>
-            <Reveal>
-              <p className="text-3xl md:text-[32px] font-semibold text-[var(--color-text-secondary)]">
-                I became design manager at Cazoo, Deel and StepStone.
-              </p>
+              <div className="flex flex-wrap gap-6 text-base text-[var(--color-text-tertiary)]">
+                <p>
+                  Team size: <span className="text-black">5 → 7 → 9 designers</span>
+                </p>
+                <p>
+                  Scope: <span className="text-black">1 domain → 2</span>
+                </p>
+              </div>
             </Reveal>
           </section>
 
@@ -87,25 +161,42 @@ export default function Experience() {
                 key={i}
                 label={
                   <div className="flex flex-col gap-6">
-                    <img
-                      src={role.logo}
-                      alt={role.company}
-                      className="h-8 md:h-10 w-auto object-contain object-left"
-                    />
+                    {role.logo ? (
+                      <img
+                        src={role.logo}
+                        alt={role.company}
+                        className="h-8 md:h-10 w-auto object-contain object-left"
+                      />
+                    ) : (
+                      <p className="h-8 md:h-10 flex items-center text-xl font-semibold text-black">
+                        {role.company}
+                      </p>
+                    )}
                     <div className="flex flex-col gap-1">
                       <p className="text-2xl font-semibold text-black">
                         {role.title}
                       </p>
                       <p className="text-base text-[var(--color-text-tertiary)]">
-                        {role.meta}
+                        {periodLabel(role)}
+                        {role.location ? ` • ${role.location}` : ''}
                       </p>
                     </div>
                   </div>
                 }
               >
-                <p className="text-xl font-medium leading-7 text-black">
-                  {role.description}
+                <p className="text-base text-[var(--color-text-tertiary)]">
+                  {role.context}
                 </p>
+                {role.leadIn && (
+                  <p className="text-xl font-semibold leading-7 text-black">
+                    {role.leadIn}
+                  </p>
+                )}
+                {role.paragraphs.map((text, j) => (
+                  <p key={j} className="text-xl font-medium leading-7 text-black">
+                    {text}
+                  </p>
+                ))}
               </GridSplit>
             ))}
           </section>
