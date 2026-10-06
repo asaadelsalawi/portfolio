@@ -68,8 +68,6 @@
 </head>
 <body>
 <div id="root">
-  <h1>Team navigation, 2023–2026</h1>
-  <p class="subtitle">How 15 people moved through the team over four years. Each column is a year, each block a state, each ribbon the people moving between two years. Tap or hover anything to trace it.</p>
   <div class="stage" id="stage"></div>
   <div class="legend" id="legend"></div>
 </div>
@@ -81,13 +79,13 @@
 
   // Renamed to plain, human wording. `source` = exact wording in the sheet.
   var STATES = [
-    { id: 'on-team',   source: 'In My Team',           label: 'On my team',               varName: '--lime' },
-    { id: 'new-hire',  source: 'Joined From Outside',  label: 'New hire',                 varName: '--lime-light' },
-    { id: 'moved-in',  source: 'Joined From Within',   label: 'Moved from another team',  varName: '--lime-light' },
-    { id: 'moved-out', source: 'Left Within',          label: 'Moved to another team',    varName: '--purple-light' },
-    { id: 'left-co',   source: 'Left Outside',         label: 'Left the company',         varName: '--coral-light' },
-    { id: 'elsewhere', source: 'Other Business Area',  label: 'Elsewhere in the company', varName: '--purple-light' },
-    { id: 'not-at-co', source: 'Not In Business',      label: 'Not at the company',        varName: '--coral-light' },
+    { id: 'on-team',   source: 'In My Team',           label: 'On my team',               varName: '--green' },
+    { id: 'new-hire',  source: 'Joined From Outside',  label: 'New hire',                 varName: '--green-light' },
+    { id: 'moved-in',  source: 'Joined From Within',   label: 'Moved from another team',  varName: '--green-light' },
+    { id: 'moved-out', source: 'Left Within',          label: 'Moved to another team',    varName: '--blue-light' },
+    { id: 'left-co',   source: 'Left Outside',         label: 'Left the company',         varName: '--purple-light' },
+    { id: 'elsewhere', source: 'Other Business Area',  label: 'Elsewhere in the company', varName: '--blue-light' },
+    { id: 'not-at-co', source: 'Not In Business',      label: 'Not at the company',        varName: '--purple-light' },
     { id: 'no-data',   source: null,                   label: 'No data',                   varName: '--bg-secondary', neutral: true },
   ];
   var STATE_BY_ID = {};

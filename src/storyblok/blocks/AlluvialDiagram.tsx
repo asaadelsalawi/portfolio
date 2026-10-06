@@ -26,7 +26,7 @@ export default function AlluvialDiagram({ blok }: { blok: AlluvialBlok }) {
     <div {...storyblokEditable(blok)} className="w-full">
       <iframe
         ref={frameRef}
-        src={blok.src || '/team-navigation-v5.html'}
+        src={blok.src || '/team-navigation-v6.html'}
         title={blok.title || 'Team navigation 2023 to 2026'}
         className="w-full border-0 bg-white block"
         style={{ height }}

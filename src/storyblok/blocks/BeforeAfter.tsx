@@ -15,12 +15,12 @@ function parseRatio(value?: string) {
 }
 
 // 1152px frame with 74px padding (74/1152 of the width, so it scales down on
-// small screens), light lime background.
+// small screens), light blue background.
 export default function BeforeAfter({ blok }: { blok: BeforeAfterBlok }) {
   if (!blok.before_src || !blok.after_src) return null
   return (
     <div {...storyblokEditable(blok)} className="@container w-full">
-      <div className="bg-[var(--color-lime-light)] rounded-[var(--radius-xl)] p-[6.4236cqw]">
+      <div className="bg-[var(--color-blue-light)] rounded-[var(--radius-l4)] p-[6.4236cqw]">
         <BeforeAfterSlider
           showLabels={false}
           aspectRatio={parseRatio(blok.aspect_ratio)}

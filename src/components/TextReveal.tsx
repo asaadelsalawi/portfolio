@@ -14,9 +14,12 @@ const END_COLOR = '#000000'
 export default function TextReveal({
   text,
   className = '',
+  startColor = START_COLOR,
 }: {
   text: string
   className?: string
+  /** Color the words start with. Defaults to the disabled-text gray. */
+  startColor?: string
 }) {
   const ref = useRef<HTMLParagraphElement>(null)
 
@@ -45,12 +48,12 @@ export default function TextReveal({
     }, el)
 
     return () => ctx.revert()
-  }, [text])
+  }, [text, startColor])
 
   return (
     <p ref={ref} className={className}>
       {text.split(' ').map((word, i) => (
-        <span key={i} className="reveal-word" style={{ color: START_COLOR }}>
+        <span key={i} className="reveal-word" style={{ color: startColor }}>
           {word}{' '}
         </span>
       ))}

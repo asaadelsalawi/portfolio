@@ -14,6 +14,8 @@ import HeroImage from './blocks/HeroImage'
 import AlluvialDiagram from './blocks/AlluvialDiagram'
 import BeforeAfter from './blocks/BeforeAfter'
 import Placeholder from './blocks/Placeholder'
+import VideoFrame from './blocks/VideoFrame'
+import Learnings from './blocks/Learnings'
 
 // Public Content Delivery API token (read-only). Safe to ship in frontend
 // code, this is how Storyblok's CDN token is designed to be used.
@@ -41,5 +43,7 @@ storyblokInit({
     alluvial_diagram: AlluvialDiagram,
     before_after: BeforeAfter,
     placeholder: Placeholder,
+    video_frame: VideoFrame,
+    learnings: Learnings,
   },
 })
