@@ -1,8 +1,9 @@
 import { storyblokEditable, type SbBlokData } from '@storyblok/react'
 import NumberBlocks from '../../components/NumberBlocks'
+import { toneOf } from '../../components/Frame'
 
 type ItemBlok = SbBlokData & { value?: string; caption?: string }
-type NumberBlocksBlok = SbBlokData & { items?: ItemBlok[] }
+type NumberBlocksBlok = SbBlokData & { items?: ItemBlok[]; tone?: string }
 
 export default function NumberBlocksBlock({ blok }: { blok: NumberBlocksBlok }) {
   const items = (blok.items ?? [])
@@ -11,7 +12,7 @@ export default function NumberBlocksBlock({ blok }: { blok: NumberBlocksBlok }) 
   if (items.length === 0) return null
   return (
     <div {...storyblokEditable(blok)} className="w-full">
-      <NumberBlocks items={items} />
+      <NumberBlocks items={items} tone={toneOf(blok.tone)} />
     </div>
   )
 }

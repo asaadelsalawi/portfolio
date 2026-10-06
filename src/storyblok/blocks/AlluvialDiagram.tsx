@@ -22,11 +22,13 @@ export default function AlluvialDiagram({ blok }: { blok: AlluvialBlok }) {
     return () => window.removeEventListener('message', onMessage)
   }, [])
 
+  if (!blok.src) return null
+
   return (
     <div {...storyblokEditable(blok)} className="w-full">
       <iframe
         ref={frameRef}
-        src={blok.src || '/team-navigation-v6.html'}
+        src={blok.src}
         title={blok.title || 'Team navigation 2023 to 2026'}
         className="w-full border-0 bg-white block"
         style={{ height }}

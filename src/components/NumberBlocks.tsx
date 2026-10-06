@@ -1,4 +1,5 @@
 import TextReveal from './TextReveal'
+import Frame, { type FrameTone } from './Frame'
 
 export type NumberItem = { value: string; caption: string }
 
@@ -7,29 +8,33 @@ export type NumberItem = { value: string; caption: string }
 const START = 'rgba(0, 0, 0, 0.28)'
 
 /**
- * Three-up number block. Frame: light blue, 74px left/right and 110px top/bottom
- * at 1152px wide (scaled with the width). Value and caption both use the
+ * Three-up number block in the shared Frame (74px left/right, 110px top/bottom
+ * at 1152px wide, scaled with the width). Value and caption both use the
  * scroll-scrubbed text reveal.
  */
-export default function NumberBlocks({ items }: { items: NumberItem[] }) {
+export default function NumberBlocks({
+  items,
+  tone = 'blue-light',
+}: {
+  items: NumberItem[]
+  tone?: FrameTone
+}) {
   return (
-    <div className="@container w-full">
-      <div className="bg-[var(--color-blue-light)] rounded-[var(--radius-l2)] px-[6.4236cqw] py-[9.5486cqw] flex flex-col md:flex-row gap-10 md:gap-6">
-        {items.map((item) => (
-          <div key={item.value} className="flex-1 min-w-0 flex flex-col gap-4">
-            <TextReveal
-              text={item.value}
-              startColor={START}
-              className="text-3xl md:text-[40px] font-semibold leading-normal"
-            />
-            <TextReveal
-              text={item.caption}
-              startColor={START}
-              className="text-xl font-medium leading-7"
-            />
-          </div>
-        ))}
-      </div>
-    </div>
+    <Frame tone={tone} padding="stats" radius="l2" className="flex flex-col md:flex-row gap-10 md:gap-6">
+      {items.map((item) => (
+        <div key={item.value} className="flex-1 min-w-0 flex flex-col gap-4">
+          <TextReveal
+            text={item.value}
+            startColor={START}
+            className="text-3xl md:text-[40px] font-semibold leading-normal"
+          />
+          <TextReveal
+            text={item.caption}
+            startColor={START}
+            className="text-xl font-medium leading-7"
+          />
+        </div>
+      ))}
+    </Frame>
   )
 }
