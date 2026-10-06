@@ -16,6 +16,7 @@ import BeforeAfter from './blocks/BeforeAfter'
 import Placeholder from './blocks/Placeholder'
 import VideoFrame from './blocks/VideoFrame'
 import Learnings from './blocks/Learnings'
+import NumberBlocksBlock from './blocks/NumberBlocksBlock'
 
 // Public Content Delivery API token (read-only). Safe to ship in frontend
 // code, this is how Storyblok's CDN token is designed to be used.
@@ -45,5 +46,6 @@ storyblokInit({
     placeholder: Placeholder,
     video_frame: VideoFrame,
     learnings: Learnings,
+    number_blocks: NumberBlocksBlock,
   },
 })
