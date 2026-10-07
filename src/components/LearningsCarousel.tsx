@@ -62,7 +62,7 @@ export default function LearningsCarousel({
                 </p>
                 <div className="flex-1 min-w-0 flex flex-col gap-6 text-white">
                   <p className="text-2xl font-semibold leading-normal">{slide.headline}</p>
-                  <p className="text-sm leading-5 md:text-xl md:leading-normal font-medium">{slide.text}</p>
+                  <p className="text-base leading-6 md:text-xl md:leading-normal font-medium">{slide.text}</p>
                 </div>
               </div>
             ))}

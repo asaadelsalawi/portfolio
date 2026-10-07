@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom'
 export const DISPLAY = 'text-3xl md:text-[32px] font-semibold'
 
 /**
- * Body text size. Mobile 14px / 20px, from md up 20px / 28px.
+ * Body text size. Mobile 16px / 24px, from md up 20px / 28px.
  * One place: change it here and every paragraph, lead and caption follows.
  */
-export const BODY = 'text-sm leading-5 md:text-xl md:leading-7'
+export const BODY = 'text-base leading-6 md:text-xl md:leading-7'
 
 /** Body paragraph used in every text section. */
 export function P({ children, className = '' }: { children: ReactNode; className?: string }) {
