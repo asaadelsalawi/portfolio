@@ -36,7 +36,7 @@ export default function Home() {
               to="/case-studies/resilience-by-design"
               title="Resilience by Design"
               image="https://www.figma.com/api/mcp/asset/579c5a2f-8ccf-4591-853b-cd71e8e8ef75.png"
-              description='Every design team runs on a standard, a shared idea of what "good" means. Building mine was the easy part. Keeping it alive was the real job.'
+              description="How I held the standard while my team kept changing."
             />
           </FullBleed>
         </Reveal>
