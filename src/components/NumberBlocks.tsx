@@ -1,5 +1,6 @@
 import TextReveal from './TextReveal'
 import Frame, { type FrameTone } from './Frame'
+import { BODY } from './Text'
 
 export type NumberItem = { value: string; caption: string }
 
@@ -31,7 +32,7 @@ export default function NumberBlocks({
           <TextReveal
             text={item.caption}
             startColor={START}
-            className="text-xl font-medium leading-7"
+            className={`${BODY} font-medium`}
           />
         </div>
       ))}

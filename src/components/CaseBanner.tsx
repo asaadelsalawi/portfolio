@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { BODY } from './Text'
 
 type Props = {
   to: string
@@ -36,7 +37,7 @@ export default function CaseBanner({
         <p className="text-3xl md:text-[32px] font-semibold text-black">
           {title}
         </p>
-        <p className="text-xl leading-7 text-black">{description}</p>
+        <p className={`${BODY} text-black`}>{description}</p>
         <Link
           to={to}
           className="inline-flex items-center justify-center px-5 py-4 rounded-full bg-black/80 text-white font-semibold w-fit hover:bg-black transition-colors"
