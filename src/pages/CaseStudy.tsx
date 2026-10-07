@@ -6,9 +6,7 @@ import {
   getStoryblokApi,
   type ISbStoryData,
 } from '@storyblok/react'
-import Header from '../components/Header'
-import ContactBar from '../components/ContactBar'
-import Reveal from '../components/Reveal'
+import PageMain from '../components/PageMain'
 import { CaseStudyTitleContext } from '../storyblok/CaseStudyTitleContext'
 
 type CaseStudyContent = {
@@ -52,7 +50,7 @@ export default function CaseStudy() {
 
   if (status === 'loading') {
     return (
-      <div className="min-h-screen flex items-center justify-center text-[var(--color-text-tertiary)]">
+      <div className="flex-1 flex items-center justify-center text-[var(--color-text-tertiary)]">
         Loading case study…
       </div>
     )
@@ -60,7 +58,7 @@ export default function CaseStudy() {
 
   if (status === 'error' || !liveStory) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-2 text-center px-6">
+      <div className="flex-1 flex flex-col items-center justify-center gap-2 text-center px-6">
         <p className="text-xl font-semibold text-black">Case study not found</p>
         <p className="text-[var(--color-text-tertiary)]">
           Couldn't load "{storySlug}" from Storyblok. Check the slug or the
@@ -73,20 +71,12 @@ export default function CaseStudy() {
   const { title, body } = liveStory.content
 
   return (
-    <div className="min-h-screen flex flex-col items-center">
-      <div className="w-full max-w-[1440px] flex flex-col flex-1">
-        <Header />
-        <main className="flex-1 flex flex-col items-center gap-20 md:gap-32 px-6 md:px-[144px] mt-16 md:mt-[120px] mb-16 md:mb-[120px] w-full">
-          <CaseStudyTitleContext.Provider value={title}>
-            {(body ?? []).map((blok) => (
-              <StoryblokComponent blok={blok} key={blok._uid} />
-            ))}
-          </CaseStudyTitleContext.Provider>
-        </main>
-        <Reveal>
-          <ContactBar />
-        </Reveal>
-      </div>
-    </div>
+    <PageMain>
+      <CaseStudyTitleContext.Provider value={title}>
+        {(body ?? []).map((blok) => (
+          <StoryblokComponent blok={blok} key={blok._uid} />
+        ))}
+      </CaseStudyTitleContext.Provider>
+    </PageMain>
   )
 }

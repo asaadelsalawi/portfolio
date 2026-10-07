@@ -8,6 +8,7 @@ import Imprint from '../pages/Imprint'
 import TextRevealTest from '../pages/TextRevealTest'
 import Styles from '../pages/Styles'
 import Experience from '../pages/Experience'
+import Layout from './Layout'
 
 export default function PageTransition() {
   const location = useLocation()
@@ -21,9 +22,10 @@ export default function PageTransition() {
   }, [location, displayLocation])
 
   return (
+    <Layout>
     <div
       key={displayLocation.pathname}
-      className={stage === 'out' ? 'page-fade-out' : 'page-fade-in'}
+      className={`flex flex-col flex-1 ${stage === 'out' ? 'page-fade-out' : 'page-fade-in'}`}
       onAnimationEnd={() => {
         if (stage === 'out') {
           setDisplayLocation(location)
@@ -42,5 +44,6 @@ export default function PageTransition() {
         <Route path="/experience" element={<Experience />} />
       </Routes>
     </div>
+    </Layout>
   )
 }

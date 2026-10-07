@@ -1,5 +1,6 @@
 import { storyblokEditable, type SbBlokData } from '@storyblok/react'
 import Reveal from '../../components/Reveal'
+import Button from '../../components/Button'
 
 type ProofBlok = SbBlokData & {
   label?: string
@@ -13,15 +14,9 @@ export default function Proof({ blok }: { blok: ProofBlok }) {
 
   return (
     <Reveal className="w-full">
-      <a
-        {...storyblokEditable(blok)}
-        href={href}
-        target="_blank"
-        rel="noreferrer"
-        className="inline-flex items-center justify-center px-5 py-4 rounded-full bg-black text-white font-semibold w-fit hover:bg-black/80 transition-colors"
-      >
-        {blok.label || 'View the prototype'} →
-      </a>
+      <div {...storyblokEditable(blok)}>
+        <Button href={href}>{blok.label || 'View the prototype'} →</Button>
+      </div>
     </Reveal>
   )
 }

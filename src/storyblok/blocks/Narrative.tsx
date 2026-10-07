@@ -1,5 +1,5 @@
 import { storyblokEditable, StoryblokComponent, type SbBlokData } from '@storyblok/react'
-import GridSplit from '../../components/GridSplit'
+import TextSection from '../../components/TextSection'
 import { renderCaseStudyRichText } from '../richtext'
 
 type NarrativeBlok = SbBlokData & {
@@ -9,24 +9,16 @@ type NarrativeBlok = SbBlokData & {
 }
 
 export default function Narrative({ blok }: { blok: NarrativeBlok }) {
-  const rendered = renderCaseStudyRichText(blok.content)
-
   return (
-    <section {...storyblokEditable(blok)} className="flex flex-col gap-10 w-full">
-      <GridSplit
-        label={
-          blok.heading ? (
-            <p className="text-2xl font-semibold text-black">{blok.heading}</p>
-          ) : (
-            <span />
-          )
-        }
+    <div {...storyblokEditable(blok)} className="w-full">
+      <TextSection
+        heading={blok.heading}
+        visuals={(blok.visuals ?? []).map((visual) => (
+          <StoryblokComponent blok={visual} key={visual._uid} />
+        ))}
       >
-        {rendered}
-      </GridSplit>
-      {(blok.visuals ?? []).map((visual) => (
-        <StoryblokComponent blok={visual} key={visual._uid} />
-      ))}
-    </section>
+        {renderCaseStudyRichText(blok.content)}
+      </TextSection>
+    </div>
   )
 }

@@ -3,7 +3,7 @@ import GridSplit from './GridSplit'
 
 export default function ContactBar() {
   return (
-    <footer className="w-full rounded-[var(--radius-l)] bg-white/70 backdrop-blur-md pt-4 pb-8 px-6 md:px-[140px] flex flex-col gap-16">
+    <footer className="w-full rounded-[var(--radius-l)] glass pt-4 pb-8 px-6 md:px-[140px] flex flex-col gap-16">
       <GridSplit label={<p className="font-semibold text-black">That's not the end</p>}>
         <p className="text-[var(--color-text-secondary)]">
           I'm looking forward to hearing from you. You can reach me on the

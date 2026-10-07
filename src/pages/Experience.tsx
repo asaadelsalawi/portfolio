@@ -1,7 +1,7 @@
-import Header from '../components/Header'
-import ContactBar from '../components/ContactBar'
-import GridSplit from '../components/GridSplit'
-import Reveal from '../components/Reveal'
+import PageMain from '../components/PageMain'
+import PageHeading from '../components/PageHeading'
+import TextSection from '../components/TextSection'
+import { P } from '../components/Text'
 
 type YM = { y: number; m: number } // m: 1-12
 
@@ -115,72 +115,45 @@ const roles: Role[] = [
 
 export default function Experience() {
   return (
-    <div className="min-h-screen flex flex-col items-center">
-      <div className="w-full max-w-[1440px] flex flex-col flex-1">
-        <Header />
-        <main className="flex-1 flex flex-col gap-20 md:gap-32 px-6 md:px-[144px] mt-16 md:mt-[120px] mb-16 md:mb-[120px] w-full">
-          <section className="flex flex-col gap-10 w-full">
-            <div className="flex flex-col">
-              <Reveal>
-                <h1 className="text-3xl md:text-[32px] font-semibold text-black">
-                  From designing products to designing organisations.
-                </h1>
-              </Reveal>
-              <Reveal>
-                <p className="text-3xl md:text-[32px] font-semibold text-[var(--color-text-secondary)]">
-                  I managed design teams at Cazoo, Deel and StepStone with strong focus on B2B and SaaS.
-                </p>
-              </Reveal>
-            </div>
-          </section>
+    <PageMain>
+      <PageHeading
+        title="From designing products to designing organisations."
+        subtitle="I managed design teams at Cazoo, Deel and StepStone with strong focus on B2B and SaaS."
+      />
 
-          <section className="flex flex-col gap-20">
-            {roles.map((role, i) => (
-              <GridSplit
-                key={i}
-                label={
-                  <div className="flex flex-col gap-3">
-                    {role.logo ? (
-                      <img
-                        src={role.logo}
-                        alt={role.company}
-                        className="h-12 md:h-[60px] w-auto object-contain object-left"
-                      />
-                    ) : (
-                      <p className="h-12 md:h-[60px] flex items-center text-xl font-semibold text-black">
-                        {role.company}
-                      </p>
-                    )}
-                    <div className="flex flex-col gap-1">
-                      <p className="text-2xl font-semibold text-black">
-                        {role.title}
-                      </p>
-                      <p className="text-base text-[var(--color-text-tertiary)]">
-                        {periodLabel(role)}
-                        {role.location ? ` • ${role.location}` : ''}
-                      </p>
-                    </div>
-                  </div>
-                }
-              >
-                {role.leadIn && (
-                  <p className="text-xl font-semibold leading-7 text-black">
-                    {role.leadIn}
+      <section className="flex flex-col gap-20">
+        {roles.map((role, i) => (
+          <TextSection
+            key={i}
+            label={
+              <div className="flex flex-col gap-3">
+                {role.logo ? (
+                  <img
+                    src={role.logo}
+                    alt={role.company}
+                    className="h-12 md:h-[60px] w-auto object-contain object-left"
+                  />
+                ) : (
+                  <p className="h-12 md:h-[60px] flex items-center text-xl font-semibold text-black">
+                    {role.company}
                   </p>
                 )}
-                {role.paragraphs.map((text, j) => (
-                  <p key={j} className="text-xl font-medium leading-7 text-black">
-                    {text}
+                <div className="flex flex-col gap-1">
+                  <p className="text-2xl font-semibold text-black">{role.title}</p>
+                  <p className="text-base text-[var(--color-text-tertiary)]">
+                    {periodLabel(role)}
+                    {role.location ? ` • ${role.location}` : ''}
                   </p>
-                ))}
-              </GridSplit>
+                </div>
+              </div>
+            }
+          >
+            {role.paragraphs.map((text, j) => (
+              <P key={j}>{text}</P>
             ))}
-          </section>
-        </main>
-        <Reveal>
-          <ContactBar />
-        </Reveal>
-      </div>
-    </div>
+          </TextSection>
+        ))}
+      </section>
+    </PageMain>
   )
 }

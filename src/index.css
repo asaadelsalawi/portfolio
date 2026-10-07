@@ -81,3 +81,11 @@ body {
 .page-fade-out {
   animation: page-fade-out 0.2s cubic-bezier(0.4, 0, 1, 1) both;
 }
+
+/* Frosted glass: 70% white plus a real background blur. The -webkit- prefix is
+   needed for Safari; the Tailwind utilities alone did not emit it. */
+.glass {
+  background-color: rgb(255 255 255 / 0.7);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}

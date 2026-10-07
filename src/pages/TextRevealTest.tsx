@@ -1,8 +1,6 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Header from '../components/Header'
-import ContactBar from '../components/ContactBar'
 import BeforeAfterSlider from '../components/BeforeAfterSlider'
 import NumberBlocks from '../components/NumberBlocks'
 
@@ -44,9 +42,7 @@ export default function TextRevealTest() {
   }, [headerHeight, tab])
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-white">
-      <div className="w-full max-w-[1440px] flex flex-col flex-1">
-        <Header />
+    <div className="flex flex-col flex-1 bg-white">
 
         <div className="flex gap-2 px-6 md:px-[144px] pt-6 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <button
@@ -161,9 +157,6 @@ export default function TextRevealTest() {
             </p>
           </main>
         )}
-
-        {tab !== 'team-nav' && <ContactBar />}
-      </div>
     </div>
   )
 }

@@ -1,8 +1,9 @@
-import Header from '../components/Header'
-import ContactBar from '../components/ContactBar'
 import MediaBlock from '../components/MediaBlock'
-import GridSplit from '../components/GridSplit'
+import PageMain from '../components/PageMain'
+import PageHeading from '../components/PageHeading'
+import TextSection from '../components/TextSection'
 import Reveal from '../components/Reveal'
+import { P } from '../components/Text'
 
 const pillars = [
   {
@@ -40,57 +41,31 @@ const pillars = [
 
 export default function Leadership() {
   return (
-    <div className="min-h-screen flex flex-col items-center">
-      <div className="w-full max-w-[1440px] flex flex-col flex-1">
-        <Header />
-        <main className="flex-1 flex flex-col gap-20 md:gap-32 px-6 md:px-[144px] mt-16 md:mt-[120px] mb-16 md:mb-[120px] w-full">
-          <section className="flex flex-col gap-2">
-            <Reveal>
-              <h1 className="text-3xl md:text-[32px] font-semibold text-black">
-                How I Lead Design
-              </h1>
-            </Reveal>
-            <Reveal>
-              <p className="text-3xl md:text-[32px] font-semibold text-[var(--color-text-secondary)]">
-                Leadership isn't about having more authority. It's about
-                being trusted with judgment, and being willing to use it
-                before you have full certainty.
-              </p>
-            </Reveal>
-          </section>
+    <PageMain>
+      <PageHeading
+        title="How I Lead Design"
+        subtitle="Leadership isn't about having more authority. It's about being trusted with judgment, and being willing to use it before you have full certainty."
+      />
 
-          <section className="flex flex-col gap-20">
-            {pillars.map((pillar) => (
-              <div key={pillar.title} className="flex flex-col gap-10">
-                <GridSplit
-                  label={
-                    <p className="text-2xl font-semibold text-black">
-                      {pillar.title}
-                    </p>
-                  }
-                >
-                  {pillar.body.map((paragraph, i) => (
-                    <p
-                      key={i}
-                      className="text-xl font-medium leading-7 text-black"
-                    >
-                      {paragraph}
-                    </p>
-                  ))}
-                </GridSplit>
-                {pillar.withImage && (
-                  <Reveal>
-                    <MediaBlock />
-                  </Reveal>
-                )}
-              </div>
+      <section className="flex flex-col gap-20">
+        {pillars.map((pillar) => (
+          <TextSection
+            key={pillar.title}
+            heading={pillar.title}
+            visuals={
+              pillar.withImage && (
+                <Reveal>
+                  <MediaBlock />
+                </Reveal>
+              )
+            }
+          >
+            {pillar.body.map((paragraph, i) => (
+              <P key={i}>{paragraph}</P>
             ))}
-          </section>
-        </main>
-        <Reveal>
-          <ContactBar />
-        </Reveal>
-      </div>
-    </div>
+          </TextSection>
+        ))}
+      </section>
+    </PageMain>
   )
 }

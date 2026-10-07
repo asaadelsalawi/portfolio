@@ -82,10 +82,10 @@ export default function BeforeAfterSlider({ before, after, initial = 50, aspectR
       {/* Labels. Shown statically, since a hover-only reveal would not work on touch. */}
       {showLabels && (
         <>
-          <p className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-white/70 backdrop-blur-md text-sm font-semibold text-black">
+          <p className="absolute top-4 left-4 px-3 py-1.5 rounded-full glass text-sm font-semibold text-black">
             before
           </p>
-          <p className="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-white/70 backdrop-blur-md text-sm font-semibold text-black">
+          <p className="absolute top-4 right-4 px-3 py-1.5 rounded-full glass text-sm font-semibold text-black">
             after
           </p>
         </>

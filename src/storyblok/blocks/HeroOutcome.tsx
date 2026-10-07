@@ -1,5 +1,6 @@
 import { storyblokEditable, type SbBlokData } from '@storyblok/react'
-import Reveal from '../../components/Reveal'
+import PageHeading, { MetaRow } from '../../components/PageHeading'
+import { P } from '../../components/Text'
 import { useCaseStudyTitle } from '../CaseStudyTitleContext'
 
 type HeroOutcomeBlok = SbBlokData & {
@@ -13,50 +14,21 @@ type HeroOutcomeBlok = SbBlokData & {
 
 export default function HeroOutcome({ blok }: { blok: HeroOutcomeBlok }) {
   const title = useCaseStudyTitle()
-
-  const meta = [
-    { label: 'Company', value: blok.company },
-    { label: 'Role', value: blok.role },
-    { label: 'Period', value: blok.timeframe },
-    { label: 'Team', value: blok.team },
-  ].filter((m) => m.value)
-
   return (
-    <div {...storyblokEditable(blok)} className="flex flex-col gap-10 w-full">
-      <div className="flex flex-col">
-        {title && (
-          <Reveal>
-            <h1 className="text-3xl md:text-[32px] font-semibold text-black">
-              {title}
-            </h1>
-          </Reveal>
-        )}
-        {blok.headline && (
-          <Reveal>
-            <p className="text-3xl md:text-[32px] font-semibold text-[var(--color-text-secondary)]">
-              {blok.headline}
-            </p>
-          </Reveal>
-        )}
-        {blok.outcome_statement && (
-          <Reveal>
-            <p className="text-xl font-medium text-black">
-              {blok.outcome_statement}
-            </p>
-          </Reveal>
-        )}
-      </div>
-      {meta.length > 0 && (
-        <Reveal>
-          <div className="flex flex-wrap gap-6 text-base text-[var(--color-text-tertiary)]">
-            {meta.map((m) => (
-              <p key={m.label}>
-                {m.label}: <span className="text-black">{m.value}</span>
-              </p>
-            ))}
-          </div>
-        </Reveal>
-      )}
+    <div {...storyblokEditable(blok)} className="w-full">
+      <PageHeading title={title} subtitle={blok.headline}>
+        <div className="flex flex-col gap-6">
+          {blok.outcome_statement && <P>{blok.outcome_statement}</P>}
+          <MetaRow
+            items={[
+              { label: 'Company', value: blok.company },
+              { label: 'Role', value: blok.role },
+              { label: 'Period', value: blok.timeframe },
+              { label: 'Team', value: blok.team },
+            ]}
+          />
+        </div>
+      </PageHeading>
     </div>
   )
 }

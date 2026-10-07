@@ -1,5 +1,5 @@
 import { storyblokEditable, type SbBlokData } from '@storyblok/react'
-import GridSplit from '../../components/GridSplit'
+import TextSection from '../../components/TextSection'
 import { renderCaseStudyRichText } from '../richtext'
 
 type AiFluencyBlok = SbBlokData & {
@@ -11,8 +11,8 @@ type AiFluencyBlok = SbBlokData & {
 
 export default function AiFluency({ blok }: { blok: AiFluencyBlok }) {
   return (
-    <section {...storyblokEditable(blok)} className="flex flex-col gap-6 w-full">
-      <GridSplit
+    <div {...storyblokEditable(blok)} className="w-full">
+      <TextSection
         label={
           <div className="flex flex-col gap-2">
             {blok.workflow_title && (
@@ -25,16 +25,18 @@ export default function AiFluency({ blok }: { blok: AiFluencyBlok }) {
             )}
           </div>
         }
+        visuals={
+          blok.example_asset?.filename && (
+            <img
+              src={blok.example_asset.filename}
+              alt={blok.example_asset.alt || blok.workflow_title || ''}
+              className="w-full rounded-[var(--radius-l4)] object-cover"
+            />
+          )
+        }
       >
         {renderCaseStudyRichText(blok.description)}
-      </GridSplit>
-      {blok.example_asset?.filename && (
-        <img
-          src={blok.example_asset.filename}
-          alt={blok.example_asset.alt || blok.workflow_title || ''}
-          className="w-full rounded-[var(--radius-l4)] object-cover"
-        />
-      )}
-    </section>
+      </TextSection>
+    </div>
   )
 }

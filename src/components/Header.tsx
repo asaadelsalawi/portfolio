@@ -11,7 +11,7 @@ export default function Header() {
   const location = useLocation()
 
   return (
-    <header className="sticky top-0 z-50 flex items-baseline gap-6 px-6 md:px-[144px] py-4 bg-white/70 backdrop-blur-md">
+    <header className="sticky top-0 z-50 flex items-baseline gap-6 px-6 md:px-[144px] py-4 glass">
       <Link to="/" className="flex-1 font-semibold text-black leading-none">
         Asaad El Salawi
       </Link>
@@ -27,8 +27,8 @@ export default function Header() {
               to={item.to}
               className={
                 isActive
-                  ? 'font-medium text-black'
-                  : 'font-medium text-[var(--color-text-secondary)] hover:text-black transition-colors'
+                  ? 'font-semibold text-black'
+                  : 'font-semibold text-[var(--color-text-secondary)] hover:text-black transition-colors'
               }
             >
               {item.label}
