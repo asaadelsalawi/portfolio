@@ -45,7 +45,7 @@ export default function Home() {
           {teasers === null ? (
             // Holds the space while loading, so nothing jumps when the banner arrives.
             <FullBleed>
-              <div className="w-full aspect-[1392/696] rounded-[var(--radius-l4)] bg-[var(--color-bg-secondary)]" />
+              <div className="w-full min-h-[400px] md:min-h-0 md:aspect-[1392/696] rounded-[var(--radius-xl)] bg-[var(--color-bg-secondary)]" />
             </FullBleed>
           ) : (
             teasers.map((teaser) => (
@@ -55,6 +55,7 @@ export default function Home() {
                     to={`/case-studies/${teaser.slug}`}
                     title={teaser.title}
                     image={teaser.image}
+                    tone={teaser.tone}
                     description={teaser.description}
                   />
                 </FullBleed>

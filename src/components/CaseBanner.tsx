@@ -1,31 +1,27 @@
-import { Link } from 'react-router-dom'
+import HeroFrame from './HeroFrame'
+import Button from './Button'
+import type { FrameTone } from './Frame'
 import { BODY } from './Text'
 
 type Props = {
   to: string
   title: string
   description: string
-  image: string
-  bgColor?: string
+  image?: string
+  tone?: FrameTone
 }
 
-export default function CaseBanner({
-  to,
-  title,
-  description,
-  image,
-  bgColor = 'var(--color-lime-light)',
-}: Props) {
+/**
+ * Case study teaser on the home page: the case study's hero frame with text on
+ * top. On a phone the frame grows with its text (a fixed 2:1 box cut the title off).
+ */
+export default function CaseBanner({ to, title, description, image, tone }: Props) {
   return (
-    <div
-      className="relative w-full aspect-[1392/696] rounded-[var(--radius-l4)] flex items-end p-6 md:p-[120px] overflow-hidden"
-      style={{ backgroundColor: bgColor }}
+    <HeroFrame
+      tone={tone}
+      image={image}
+      className="min-h-[400px] md:min-h-0 md:aspect-[1392/696] flex items-end p-6 md:p-[120px]"
     >
-      <img
-        src={image}
-        alt=""
-        className="absolute inset-0 w-full h-full object-cover object-top"
-      />
       <div
         className="absolute inset-0"
         style={{
@@ -34,17 +30,10 @@ export default function CaseBanner({
         }}
       />
       <div className="relative flex flex-col gap-5 max-w-[564px]">
-        <p className="text-3xl md:text-[32px] font-semibold text-black">
-          {title}
-        </p>
+        <p className="text-3xl md:text-[32px] font-semibold text-black">{title}</p>
         <p className={`${BODY} text-black`}>{description}</p>
-        <Link
-          to={to}
-          className="inline-flex items-center justify-center px-5 py-4 rounded-full bg-black/80 text-white font-semibold w-fit hover:bg-black transition-colors"
-        >
-          Read the case study →
-        </Link>
+        <Button to={to}>Read the case study →</Button>
       </div>
-    </div>
+    </HeroFrame>
   )
 }
